@@ -1,3 +1,6 @@
+
+
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../App.css'
@@ -99,7 +102,8 @@ const Courses: React.FC = () => {
 
   return (
     <div className="p-6">
-     <h1 className="text-2xl font-bold mb-4  dark:!text-white">Courses</h1>
+     <h1 className="text-2xl font-bold mb-4 dark:text-white !text-black">Courses</h1>
+
 
 
      
@@ -170,13 +174,13 @@ const Courses: React.FC = () => {
               <td className="border p-2">
                 <button
                   onClick={() => handleEditClick(course)}
-                  className="p-1 bg-green-500 text-white rounded mr-2"
+                  className="p-1 bg-green-500 text-white rounded mr-2 cursor-pointer"
                 >
                   Update
                 </button>
                 <button
                   onClick={() => deleteCourse(course.id)}
-                  className="p-1 bg-red-500 text-white rounded"
+                  className="p-1 bg-red-500 text-white rounded cursor-pointer"
                 >
                   Delete
                 </button>
@@ -240,11 +244,11 @@ const Courses: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setEditingCourse(null)}
-                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600 cursor-pointer"
                 >
                   Cancel
                 </button>
-                <button type="submit" className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <button type="submit" className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer">
                   Save
                 </button>
               </div>
@@ -257,5 +261,4 @@ const Courses: React.FC = () => {
 };
 
 export default Courses;
-
 
