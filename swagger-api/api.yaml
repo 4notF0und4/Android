@@ -1,0 +1,120 @@
+swagger: "2.0"
+info:
+  title: Courses API
+  description: Node.js və Swagger UI ilə kurs idarəetmə API-si
+  version: 1.0.0
+host: localhost:3000
+schemes:
+  - http
+basePath: "/"
+paths:
+  /courses:
+    get:
+      summary: Bütün kursları gətir
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Kursların siyahısı
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Course"
+
+    post:
+      summary: Yeni kurs əlavə et
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/Course"
+      responses:
+        "201":
+          description: Yeni kurs yaradıldı
+          schema:
+            $ref: "#/definitions/Course"
+        "400":
+          description: Xətalı sorğu
+
+  /courses/{id}:
+    get:
+      summary: Tək kursu gətir
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Kurs məlumatı
+          schema:
+            $ref: "#/definitions/Course"
+        "404":
+          description: Kurs tapılmadı
+
+    put:
+      summary: Kursu redaktə et
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/Course"
+      responses:
+        "200":
+          description: Kurs uğurla yeniləndi
+          schema:
+            $ref: "#/definitions/Course"
+        "404":
+          description: Kurs tapılmadı
+
+    delete:
+      summary: Kursu sil
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Kurs uğurla silindi
+        "404":
+          description: Kurs tapılmadı
+
+definitions:
+  Course:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      title:
+        type: string
+        example: "JavaScript Masterclass"
+      description:
+        type: string
+        example: "JavaScript öyrənmək üçün ən yaxşı kurs!"
+      isFree:
+        type: boolean
+        example: false
+      price:
+        type: integer
+        example: 49
+      expiryYear:
+        type: integer
+        example: 2025
